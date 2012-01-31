@@ -36,4 +36,7 @@
  (wrap-region-global-mode -1)
 
  ;; Reset all except modes
- (setq wrap-region-except-modes default-except-modes))
+ (setq wrap-region-except-modes default-except-modes)
+
+ ;; Do not require prefix arg
+ (setq wrap-region-require-prefix-arg nil))

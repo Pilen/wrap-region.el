@@ -102,13 +102,17 @@
 (defvar wrap-region-after-wrap-hook nil
   "Called after wrapping.")
 
+(defvar wrap-region-require-prefix-arg nil
+  "Require prefix arg to wrap.")
 
-(defun wrap-region-trigger ()
+(defun wrap-region-trigger (arg)
   "Called when trigger key is pressed."
-  (interactive)
+  (interactive "P")
   (let* ((key (char-to-string last-input-event))
          (wrapper (wrap-region-find key)))
-    (if (and (region-active-p) wrapper)
+    (if (and
+         (region-active-p) wrapper
+         (if wrap-region-require-prefix-arg arg t))
         (if (wrap-region-insert-tag-p key)
             (wrap-region-with-tag)
           (wrap-region-with-punctuations

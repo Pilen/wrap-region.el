@@ -39,3 +39,16 @@ Feature: Wrap Region
     Then I should not see "this (is some) text"
     But I should see "this (is some text"
 
+  Scenario: Only wrap when prefix arg
+    Given I add wrapper "$/$"
+    And I turn on wrap-region
+    And I require prefix arg to wrap
+    Then key "$" should not wrap
+    When I insert "this is some text"
+    And I select "is some"
+    And I start an action chain
+    And I press "C-u"
+    And I press "10"
+    And I press "$"
+    And I execute the action chain
+    Then I should see "this $is some$ text"

@@ -67,3 +67,7 @@
          (equal
           (key-binding (read-kbd-macro key))
           (intern fn)))))
+
+(Given "^I require prefix arg to wrap$"
+       (lambda ()
+         (setq wrap-region-require-prefix-arg t)))
